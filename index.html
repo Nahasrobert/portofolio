@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Robert Nahas | Web & System Developer</title>
+
 <link rel="icon" href="icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -32,47 +33,53 @@ body{
 
 .intro-text{
   text-align:center;
-  font-size:clamp(1.8rem,4vw,3rem);
+  font-size:clamp(1.6rem,4vw,3rem);
   letter-spacing:3px;
 }
 
 .intro-text span{
   display:block;
   color:var(--accent);
-  font-size:1rem;
+  font-size:.9rem;
   letter-spacing:4px;
   margin-top:12px;
   opacity:.7;
 }
 
-/* ================= MAIN CONTENT ================= */
+/* ================= MAIN ================= */
 #main{
   opacity:0;
   visibility:hidden;
 }
 
-#space{position:fixed;inset:0;z-index:-10}
+#space{
+  position:fixed;
+  inset:0;
+  z-index:-10;
+}
 
-/* HERO */
+/* ================= HERO ================= */
 .hero{
-  height:100vh;
+  min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   padding:0 20px;
 }
+
 .hero h1{
-  font-size:clamp(3rem,7vw,5rem);
+  font-size:clamp(2.2rem,7vw,5rem);
   letter-spacing:4px;
   margin-bottom:10px;
 }
+
 .hero span{color:var(--accent)}
 
 .tagline{
   max-width:760px;
   margin:20px auto;
-  font-size:1.05rem;
+  font-size:1rem;
   line-height:1.7;
   opacity:.85;
 }
@@ -81,23 +88,25 @@ body{
   display:block;
   margin-top:14px;
   letter-spacing:2px;
-  font-size:.75rem;
+  font-size:.7rem;
   opacity:.55;
   text-transform:uppercase;
 }
 
-/* TUNNEL */
+/* ================= TUNNEL ================= */
 .tunnel-section{
-  height:100vh;
+  min-height:100vh;
   overflow:hidden;
-  perspective:2000px;
 }
+
 .tunnel{
   display:flex;
   gap:140px;
   padding:80px 15vw;
   align-items:center;
 }
+
+/* CARD */
 .card{
   min-width:360px;
   height:380px;
@@ -106,28 +115,93 @@ body{
   box-shadow:0 100px 200px rgba(0,0,0,.9);
   opacity:.35;
   cursor:pointer;
+  touch-action:pan-x;
 }
+
 .card img{
   width:100%;
   height:220px;
   object-fit:cover;
   border-radius:40px 40px 0 0;
 }
-.card-body{padding:22px 26px}
-.card h3{margin:0;font-size:1.2rem}
-.card p{opacity:.75;font-size:.85rem;line-height:1.4}
 
-/* FOOTER */
+.card-body{
+  padding:22px 26px;
+}
+
+.card h3{
+  margin:0;
+  font-size:1.2rem;
+}
+
+.card p{
+  opacity:.75;
+  font-size:.85rem;
+  line-height:1.4;
+}
+
+/* ================= FOOTER ================= */
 footer{
   text-align:center;
   padding:60px 20px;
   opacity:.6;
   font-size:.85rem;
 }
+
 footer strong{color:var(--accent)}
 
+/* ================= MOBILE SCROLL ================= */
 @media(max-width:768px){
-  .card{min-width:280px;height:430px}
+
+  .hero{
+    padding:100px 18px 60px;
+  }
+
+  .hero h1{
+    font-size:2.3rem;
+    letter-spacing:2px;
+  }
+
+  .tagline{
+    font-size:.9rem;
+  }
+
+  .roles{
+    font-size:.65rem;
+  }
+
+  .tunnel-section{
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .tunnel{
+    padding:40px 8vw;
+    gap:20px;
+    width:max-content;
+  }
+
+  .card{
+    min-width:260px;
+    height:360px;
+    opacity:1;
+  }
+
+  .card img{
+    height:180px;
+    border-radius:26px 26px 0 0;
+  }
+
+  footer{
+    padding:40px 16px;
+    font-size:.75rem;
+  }
+}
+
+@media(max-width:420px){
+  .hero h1{font-size:2rem}
+  .card{min-width:230px;height:340px}
 }
 </style>
 </head>
@@ -150,13 +224,11 @@ footer strong{color:var(--accent)}
 <section class="hero">
   <div>
     <h1>Robert <span>Nahas</span></h1>
-
     <p class="tagline">
       I am a <strong>Web & System Developer</strong> focused on building modern,
       scalable, and user-centered web applications that transform ideas into
       impactful digital solutions.
     </p>
-
     <small class="roles">
       Startup Developer • System Builder • Digital Innovation
     </small>
@@ -218,32 +290,25 @@ footer strong{color:var(--accent)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
 <script>
-/* INTRO ANIMATION */
-gsap.from(".intro-text",{
-  opacity:0,
-  y:40,
-  duration:1.5,
-  ease:"power3.out"
-});
-
-gsap.to("#intro",{
-  delay:2.8,
-  opacity:0,
-  duration:1,
-  onComplete:()=>{
-    document.getElementById("intro").style.display="none";
-    gsap.to("#main",{opacity:1,visibility:"visible",duration:1.2});
-  }
-});
+/* INTRO */
+gsap.from(".intro-text",{opacity:0,y:40,duration:1.5,ease:"power3.out"});
+gsap.to("#intro",{delay:2.8,opacity:0,duration:1,onComplete:()=>{
+  intro.style.display="none";
+  gsap.to("#main",{opacity:1,visibility:"visible",duration:1.2});
+}});
 
 /* STARFIELD */
 const c=document.getElementById("space"),ctx=c.getContext("2d");
 let w,h,stars=[];
 function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
 resize();onresize=resize;
-for(let i=0;i<600;i++)stars.push({x:(Math.random()-.5)*w,y:(Math.random()-.5)*h,z:Math.random()*w});
+
+for(let i=0;i<450;i++)
+  stars.push({x:(Math.random()-.5)*w,y:(Math.random()-.5)*h,z:Math.random()*w});
+
 (function anim(){
-  ctx.fillStyle="black";ctx.fillRect(0,0,w,h);
+  ctx.fillStyle="black";
+  ctx.fillRect(0,0,w,h);
   ctx.fillStyle="white";
   stars.forEach(s=>{
     s.z-=4;if(s.z<1)s.z=w;
@@ -254,39 +319,41 @@ for(let i=0;i<600;i++)stars.push({x:(Math.random()-.5)*w,y:(Math.random()-.5)*h,
   requestAnimationFrame(anim);
 })();
 
-/* TUNNEL */
-const track=document.getElementById("tunnel");
-const cards=[...document.querySelectorAll(".card")];
-let pos=0,vel=0;
-const friction=.94,autoSpeed=.55;
+/* TUNNEL DESKTOP ONLY */
+if(innerWidth >= 768){
 
-function loop(){
-  vel+=autoSpeed*.02;
-  pos+=vel;
-  vel*=friction;
-  const max=track.scrollWidth/2;
-  if(pos>max)pos-=max;
-  if(pos<0)pos+=max;
-  gsap.set(track,{x:-pos});
-  cards.forEach(card=>{
-    const r=card.getBoundingClientRect();
-    const d=Math.abs(r.left+r.width/2-innerWidth/2);
-    const p=Math.max(0,1-d/600);
-    gsap.set(card,{scale:.7+p*.4,opacity:.35+p*.65});
-  });
-  requestAnimationFrame(loop);
+  const track=document.getElementById("tunnel");
+  const cards=[...document.querySelectorAll(".card")];
+  let pos=0,vel=0;
+  const friction=.94,autoSpeed=.55;
+
+  function loop(){
+    vel+=autoSpeed*.02;
+    pos+=vel;
+    vel*=friction;
+
+    const max=track.scrollWidth/2;
+    if(pos>max)pos-=max;
+    if(pos<0)pos+=max;
+
+    gsap.set(track,{x:-pos});
+
+    cards.forEach(card=>{
+      const r=card.getBoundingClientRect();
+      const d=Math.abs(r.left+r.width/2-innerWidth/2);
+      const p=Math.max(0,1-d/600);
+      gsap.set(card,{scale:.7+p*.4,opacity:.35+p*.65});
+    });
+
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  addEventListener("wheel",e=>vel+=e.deltaY*.003,{passive:true});
 }
-loop();
 
-addEventListener("wheel",e=>vel+=e.deltaY*.003,{passive:true});
-let lastX=0;
-addEventListener("touchstart",e=>lastX=e.touches[0].clientX,{passive:true});
-addEventListener("touchmove",e=>{
-  vel+=(lastX-e.touches[0].clientX)*.006;
-  lastX=e.touches[0].clientX;
-},{passive:true});
-
-cards.forEach(card=>{
+/* CARD CLICK */
+document.querySelectorAll(".card").forEach(card=>{
   card.onclick=()=>window.open(card.dataset.link,"_blank");
 });
 </script>
