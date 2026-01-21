@@ -104,6 +104,7 @@ body{
   gap:140px;
   padding:80px 15vw;
   align-items:center;
+  will-change:transform;
 }
 
 /* CARD */
@@ -115,7 +116,7 @@ body{
   box-shadow:0 100px 200px rgba(0,0,0,.9);
   opacity:.35;
   cursor:pointer;
-  touch-action:pan-x;
+  flex-shrink:0;
 }
 
 .card img{
@@ -150,29 +151,13 @@ footer{
 
 footer strong{color:var(--accent)}
 
-/* ================= MOBILE SCROLL ================= */
+/* ================= MOBILE ================= */
 @media(max-width:768px){
 
-  .hero{
-    padding:100px 18px 60px;
-  }
-
-  .hero h1{
-    font-size:2.3rem;
-    letter-spacing:2px;
-  }
-
-  .tagline{
-    font-size:.9rem;
-  }
-
-  .roles{
-    font-size:.65rem;
-  }
+  .hero{padding:100px 18px 60px}
 
   .tunnel-section{
     overflow-x:auto;
-    overflow-y:hidden;
     -webkit-overflow-scrolling:touch;
   }
 
@@ -192,16 +177,6 @@ footer strong{color:var(--accent)}
     height:180px;
     border-radius:26px 26px 0 0;
   }
-
-  footer{
-    padding:40px 16px;
-    font-size:.75rem;
-  }
-}
-
-@media(max-width:420px){
-  .hero h1{font-size:2rem}
-  .card{min-width:230px;height:340px}
 }
 </style>
 </head>
@@ -226,8 +201,7 @@ footer strong{color:var(--accent)}
     <h1>Robert <span>Nahas</span></h1>
     <p class="tagline">
       I am a <strong>Web & System Developer</strong> focused on building modern,
-      scalable, and user-centered web applications that transform ideas into
-      impactful digital solutions.
+      scalable, and user-centered web applications.
     </p>
     <small class="roles">
       Startup Developer • System Builder • Digital Innovation
@@ -238,6 +212,22 @@ footer strong{color:var(--accent)}
 <section class="tunnel-section">
   <div class="tunnel" id="tunnel">
 
+   <div class="card" data-link="https://pdam.kupangkota.go.id/">
+      <img src="perumda.png">
+      <div class="card-body">
+        <h3>PDAM Kota Kupang</h3>
+        <p>PDAM Information System</p>
+      </div>
+    </div>
+
+     <div class="card" data-link="https://www.gmitkarmel.com/">
+      <img src="karmel.png">
+      <div class="card-body">
+        <h3>GMIT Karmel</h3>
+        <p>Church Information System</p>
+      </div>
+    </div>
+    
     <div class="card" data-link="https://siatlas.kupangkota.go.id/">
       <img src="siatlas.png">
       <div class="card-body">
@@ -246,19 +236,13 @@ footer strong{color:var(--accent)}
       </div>
     </div>
 
-    <div class="card" data-link="https://www.gmitkarmel.com/">
-      <img src="karmel.png">
-      <div class="card-body">
-        <h3>GMIT Karmel</h3>
-        <p>Church Information System</p>
-      </div>
-    </div>
+   
 
     <div class="card" data-link="https://sivaksin.kupangkota.go.id/">
       <img src="sivaksin.png">
       <div class="card-body">
         <h3>Si VAKSIN</h3>
-        <p>Social Welfare Data Verification System</p>
+        <p>Social Welfare Verification System</p>
       </div>
     </div>
 
@@ -274,17 +258,11 @@ footer strong{color:var(--accent)}
       <img src="bkad.png">
       <div class="card-body">
         <h3>BKAD Kota Kupang</h3>
-        <p>Financial & Asset Management System</p>
+        <p>Financial & Asset Management</p>
       </div>
     </div>
 
-     <div class="card" data-link="https://pdam.kupangkota.go.id/">
-      <img src="perumda.png">
-      <div class="card-body">
-        <h3>PDAM Kota Kupang</h3>
-        <p>PDAM Information System</p>
-      </div>
-    </div>
+ 
 
   </div>
 </section>
@@ -299,19 +277,19 @@ footer strong{color:var(--accent)}
 
 <script>
 /* INTRO */
-gsap.from(".intro-text",{opacity:0,y:40,duration:1.5,ease:"power3.out"});
-gsap.to("#intro",{delay:2.8,opacity:0,duration:1,onComplete:()=>{
-  intro.style.display="none";
-  gsap.to("#main",{opacity:1,visibility:"visible",duration:1.2});
+gsap.from(".intro-text",{opacity:0,y:40,duration:1.5});
+gsap.to("#intro",{delay:2.5,opacity:0,onComplete:()=>{
+  intro.remove();
+  gsap.to("#main",{opacity:1,visibility:"visible",duration:1});
 }});
 
 /* STARFIELD */
 const c=document.getElementById("space"),ctx=c.getContext("2d");
 let w,h,stars=[];
 function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
-resize();onresize=resize;
+resize();addEventListener("resize",resize);
 
-for(let i=0;i<450;i++)
+for(let i=0;i<400;i++)
   stars.push({x:(Math.random()-.5)*w,y:(Math.random()-.5)*h,z:Math.random()*w});
 
 (function anim(){
@@ -319,30 +297,27 @@ for(let i=0;i<450;i++)
   ctx.fillRect(0,0,w,h);
   ctx.fillStyle="white";
   stars.forEach(s=>{
-    s.z-=4;if(s.z<1)s.z=w;
-    const k=140/s.z;
+    s.z-=3;if(s.z<1)s.z=w;
+    const k=120/s.z;
     const x=s.x*k+w/2,y=s.y*k+h/2;
     if(x>0&&x<w&&y>0&&y<h)ctx.fillRect(x,y,2,2);
   });
   requestAnimationFrame(anim);
 })();
 
-/* TUNNEL DESKTOP ONLY */
+/* DESKTOP HORIZONTAL SCROLL */
 if(innerWidth >= 768){
-
   const track=document.getElementById("tunnel");
   const cards=[...document.querySelectorAll(".card")];
   let pos=0,vel=0;
-  const friction=.94,autoSpeed=.55;
+  const friction=.92;
 
   function loop(){
-    vel+=autoSpeed*.02;
     pos+=vel;
     vel*=friction;
 
-    const max=track.scrollWidth/2;
-    if(pos>max)pos-=max;
-    if(pos<0)pos+=max;
+    const max=track.scrollWidth-innerWidth;
+    pos=Math.max(0,Math.min(pos,max));
 
     gsap.set(track,{x:-pos});
 
