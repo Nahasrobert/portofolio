@@ -4,340 +4,386 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Robert Nahas | Web & System Developer</title>
-
+<meta name="description" content="Portfolio of Robert Nahas, web and systems developer.">
 <link rel="icon" href="icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<noscript><style>#intro{display:none!important}</style></noscript>
 
 <style>
-:root{--accent:#ffb703}
+:root{
+  color-scheme:dark;
+  --background:#030405;
+  --surface:#121619;
+  --surface-raised:#1b2226;
+  --text:#f4f4f2;
+  --muted:#a7aaad;
+  --accent:#ffb703;
+  --accent-ink:#17120a;
+  --line:rgba(244,244,242,.14);
+  --content-width:1160px;
+}
 *{box-sizing:border-box}
-
+html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{
   margin:0;
-  font-family:'Poppins',sans-serif;
-  background:black;
-  color:white;
+  color:var(--text);
+  background-color:var(--background);
+  background-image:radial-gradient(ellipse at 50% 42%,rgba(255,183,3,.045),transparent 44%);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.6;
   overflow-x:hidden;
 }
-
-/* ================= INTRO ================= */
-#intro{
-  position:fixed;
-  inset:0;
-  background:black;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
+button,a{-webkit-tap-highlight-color:transparent}
+a{color:inherit}
+img{display:block;max-width:100%}
+.container{width:min(var(--content-width),calc(100% - 64px));margin-inline:auto}
+.site-header{height:82px;border-bottom:1px solid var(--line);display:flex;align-items:center}
+#main{position:relative;z-index:1}
+#space{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.52}
+#intro{position:fixed;inset:0;z-index:1100;display:grid;place-items:center;background:var(--background);background-image:linear-gradient(rgba(244,243,233,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(244,243,233,.025) 1px,transparent 1px);background-size:48px 48px}
+.intro-content{text-align:center}
+.intro-mark{display:grid;place-items:center;width:54px;height:54px;margin:0 auto 20px;background:var(--accent);color:var(--accent-ink);font:700 19px 'Space Grotesk',sans-serif;border-radius:4px}
+.intro-name{margin:0;font:600 36px/1.2 'Space Grotesk',sans-serif;letter-spacing:0}
+.intro-role{margin:9px 0 0;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase}
+.intro-line{display:block;width:76px;height:2px;margin:25px auto 0;background:var(--accent);transform-origin:left center}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{display:grid;place-items:center;width:40px;height:40px;background:var(--accent);color:var(--accent-ink);font:700 15px 'Space Grotesk',sans-serif;border-radius:4px}
+.brand-name{font:600 16px 'Space Grotesk',sans-serif;letter-spacing:0}
+.brand-name small{display:block;color:var(--muted);font:500 11px 'DM Sans',sans-serif}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{color:var(--muted);font-size:13px;text-decoration:none;transition:color .2s ease}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--accent)}
+.nav-links .about-link{color:var(--text);border:1px solid var(--line);padding:9px 14px;border-radius:4px}
+.hero{position:relative;display:grid;place-items:center;min-height:calc(100svh - 82px);padding:60px 24px 104px;text-align:center}
+.hero-content{width:min(920px,100%);margin:auto}
+.eyebrow{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase}
+.eyebrow::before,.eyebrow::after{content:"";width:22px;height:1px;background:currentColor}
+.hero h1{max-width:none;margin:17px 0 18px;font:700 78px/1.05 'Space Grotesk',sans-serif;letter-spacing:0}
+.hero h1 span{color:var(--accent)}
+.hero-copy{max-width:760px;margin:0 auto;color:var(--muted);font-size:17px;line-height:1.8}
+.roles{display:block;margin-top:23px;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:1.7px;text-transform:uppercase}
+.hero-actions{display:flex;align-items:center;justify-content:center;margin-top:28px}
+.primary-link{display:inline-flex;align-items:center;gap:22px;padding:13px 17px;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:700;text-decoration:none;border-radius:4px;transition:transform .2s ease,background .2s ease}
+.primary-link:hover{transform:translateY(-2px);background:#ffd166}
+.hero-scroll{position:absolute;bottom:24px;left:50%;display:grid;justify-items:center;gap:7px;transform:translateX(-50%);color:var(--muted);font-size:9px;font-weight:700;letter-spacing:1.3px;text-decoration:none;text-transform:uppercase}
+.hero-scroll span:last-child{color:var(--accent);font-size:18px;animation:scroll-bob 1.5s ease-in-out infinite}
+@keyframes scroll-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.work-section{padding:25px 0 100px;border-top:1px solid var(--line)}
+.section-top{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:28px}
+.section-kicker{margin:0 0 7px;color:var(--accent);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.section-title{margin:0;font:600 36px/1.15 'Space Grotesk',sans-serif;letter-spacing:0}
+.section-count{color:var(--muted);font-size:12px}
+.filter-list{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filter-button{padding:8px 13px;border:1px solid var(--line);border-radius:4px;background:transparent;color:var(--muted);font:500 12px 'DM Sans',sans-serif;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.filter-button:hover,.filter-button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent);color:var(--accent-ink)}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.project-card{min-width:0;overflow:hidden;border:1px solid var(--line);border-radius:6px;background:rgba(25,31,27,.92);text-decoration:none;transition:transform .22s ease,border-color .22s ease,background .22s ease}
+.project-card:hover,.project-card:focus-visible{transform:translateY(-4px);border-color:rgba(255,183,3,.68);background:var(--surface-raised);outline:none}
+.project-card[hidden]{display:none}
+.project-image{width:100%;aspect-ratio:1.58;object-fit:cover;background:var(--surface);border-bottom:1px solid var(--line)}
+.project-info{display:flex;flex-direction:column;min-height:112px;padding:17px 18px}
+.project-category{margin-bottom:6px;color:var(--accent);font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+.project-title{margin:0;font:600 17px/1.3 'Space Grotesk',sans-serif;letter-spacing:0}
+.project-description{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
+.site-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:23px 0;border-top:1px solid var(--line);color:var(--muted);font-size:11px}
+.site-footer strong{color:var(--text);font-weight:600}
+.scroll-progress{position:fixed;inset:0 0 auto;z-index:1000;height:3px;pointer-events:none}
+.scroll-progress span{display:block;width:100%;height:100%;background:var(--accent);transform:scaleX(0);transform-origin:left center}
+.about-section{padding:30px 0 58px;border-top:1px solid var(--line)}
+.about-inner{display:grid;grid-template-columns:.8fr 1.2fr;align-items:start;gap:48px}
+.about-copy{max-width:620px;margin:0;color:var(--muted);font-size:14px;line-height:1.8}
+@media(max-width:900px){
+  .hero{min-height:calc(100svh - 82px);padding:54px 24px 100px}
+  .hero h1{font-size:64px}
+  .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-
-.intro-text{
-  text-align:center;
-  font-size:clamp(1.6rem,4vw,3rem);
-  letter-spacing:3px;
+@media(max-width:640px){
+  html{scroll-padding-top:72px}
+  .container{width:min(100% - 36px,var(--content-width))}
+  .site-header{height:68px}
+  .brand-mark{width:36px;height:36px}
+  .nav-links{gap:14px}
+  .nav-links a{font-size:12px}
+  .nav-links .about-link{padding:7px 10px}
+  .hero{min-height:calc(100svh - 68px);padding:44px 18px 94px}
+  .hero h1{max-width:620px;margin:16px auto;font-size:50px}
+  .hero-copy{font-size:14px}
+  .roles{font-size:9px;line-height:1.8;letter-spacing:1.1px}
+  .work-section{padding:25px 0 64px}
+  .section-top{align-items:flex-start;margin-bottom:20px}
+  .section-title{font-size:30px}
+  .section-count{padding-top:5px;text-align:right}
+  .about-inner{grid-template-columns:1fr;gap:12px}
+  .project-grid{gap:12px}
+  .project-info{min-height:110px;padding:13px}
+  .project-title{font-size:15px}
+  .project-description{font-size:11px}
 }
-
-.intro-text span{
-  display:block;
-  color:var(--accent);
-  font-size:.9rem;
-  letter-spacing:4px;
-  margin-top:12px;
-  opacity:.7;
+@media(max-width:390px){
+  .container{width:calc(100% - 28px)}
+  .brand-name{font-size:14px}
+  .nav-links{gap:10px}
+  .nav-links a{font-size:11px}
+  .hero h1{font-size:42px}
+  .project-grid{grid-template-columns:1fr}
+  .project-image{aspect-ratio:1.8}
+  .project-info{min-height:unset}
 }
-
-/* ================= MAIN ================= */
-#main{
-  opacity:0;
-  visibility:hidden;
-}
-
-#space{
-  position:fixed;
-  inset:0;
-  z-index:-10;
-}
-
-/* ================= HERO ================= */
-.hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:0 20px;
-}
-
-.hero h1{
-  font-size:clamp(2.2rem,7vw,5rem);
-  letter-spacing:4px;
-  margin-bottom:10px;
-}
-
-.hero span{color:var(--accent)}
-
-.tagline{
-  max-width:760px;
-  margin:20px auto;
-  font-size:1rem;
-  line-height:1.7;
-  opacity:.85;
-}
-
-.roles{
-  display:block;
-  margin-top:14px;
-  letter-spacing:2px;
-  font-size:.7rem;
-  opacity:.55;
-  text-transform:uppercase;
-}
-
-/* ================= TUNNEL ================= */
-.tunnel-section{
-  min-height:100vh;
-  overflow:hidden;
-}
-
-.tunnel{
-  display:flex;
-  gap:140px;
-  padding:80px 15vw;
-  align-items:center;
-  will-change:transform;
-}
-
-/* CARD */
-.card{
-  min-width:360px;
-  height:380px;
-  background:linear-gradient(160deg,#061922,#0d3445);
-  border-radius:40px;
-  box-shadow:0 100px 200px rgba(0,0,0,.9);
-  opacity:.35;
-  cursor:pointer;
-  flex-shrink:0;
-}
-
-.card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  border-radius:40px 40px 0 0;
-}
-
-.card-body{
-  padding:22px 26px;
-}
-
-.card h3{
-  margin:0;
-  font-size:1.2rem;
-}
-
-.card p{
-  opacity:.75;
-  font-size:.85rem;
-  line-height:1.4;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  text-align:center;
-  padding:60px 20px;
-  opacity:.6;
-  font-size:.85rem;
-}
-
-footer strong{color:var(--accent)}
-
-/* ================= MOBILE ================= */
-@media(max-width:768px){
-
-  .hero{padding:100px 18px 60px}
-
-  .tunnel-section{
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-  }
-
-  .tunnel{
-    padding:40px 8vw;
-    gap:20px;
-    width:max-content;
-  }
-
-  .card{
-    min-width:260px;
-    height:360px;
-    opacity:1;
-  }
-
-  .card img{
-    height:180px;
-    border-radius:26px 26px 0 0;
-  }
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
 }
 </style>
 </head>
 
 <body>
-
-<!-- INTRO -->
-<div id="intro">
-  <div class="intro-text">
-    Robert Nahas
-    <span>Web & System Developer</span>
+<div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+<canvas id="space" aria-hidden="true"></canvas>
+<div id="intro" aria-hidden="true">
+  <div class="intro-content">
+    <span class="intro-mark">RN</span>
+    <p class="intro-name">Robert Nahas</p>
+    <p class="intro-role">Web & System Developer</p>
+    <span class="intro-line"></span>
   </div>
 </div>
-
-<!-- MAIN -->
 <div id="main">
-
-<canvas id="space"></canvas>
-
-<section class="hero">
-  <div>
-    <h1>Robert <span>Nahas</span></h1>
-    <p class="tagline">
-      I am a <strong>Web & System Developer</strong> focused on building modern,
-      scalable, and user-centered web applications.
-    </p>
-    <small class="roles">
-      Startup Developer • System Builder • Digital Innovation
-    </small>
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="#home" aria-label="Robert Nahas, back to home">
+      <span class="brand-mark" aria-hidden="true">RN</span>
+      <span class="brand-name">Robert Nahas<small>Web & System Developer</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#proyek">Projects</a>
+      <a class="about-link" href="#tentang">About</a>
+    </nav>
   </div>
-</section>
+</header>
 
-<section class="tunnel-section">
-  <div class="tunnel" id="tunnel">
-
-   <div class="card" data-link="https://pdam.kupangkota.go.id/">
-      <img src="perumda.png">
-      <div class="card-body">
-        <h3>PDAM Kota Kupang</h3>
-        <p>PDAM Information System</p>
+<main>
+  <section class="hero container" id="home">
+    <div class="hero-content">
+      <div class="eyebrow">Web & System Developer</div>
+      <h1>Robert <span>Nahas</span></h1>
+      <p class="hero-copy">I am a <strong>Web & System Developer</strong> focused on building modern, scalable, and user-centered web applications.</p>
+      <small class="roles">Startup Developer • System Builder • Digital Innovation</small>
+      <div class="hero-actions">
+        <a class="primary-link" href="#proyek">Explore projects <span aria-hidden="true">↓</span></a>
       </div>
     </div>
+    <a class="hero-scroll" href="#proyek" aria-label="Scroll to explore projects"><span>Scroll to explore</span><span aria-hidden="true">↓</span></a>
+  </section>
 
-     <div class="card" data-link="https://www.gmitkarmel.com/">
-      <img src="karmel.png">
-      <div class="card-body">
-        <h3>GMIT Karmel</h3>
-        <p>Church Information System</p>
+  <section class="work-section" id="proyek">
+    <div class="container">
+      <div class="section-top">
+        <div>
+          <p class="section-kicker">Selected work</p>
+          <h2 class="section-title">Latest projects</h2>
+        </div>
+        <span class="section-count" id="project-count">9 projects</span>
+      </div>
+      <div class="filter-list" role="group" aria-label="Project filters">
+        <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-button" type="button" data-filter="government" aria-pressed="false">Government</button>
+        <button class="filter-button" type="button" data-filter="community" aria-pressed="false">Community</button>
+        <button class="filter-button" type="button" data-filter="education" aria-pressed="false">Education</button>
+      </div>
+      <div class="project-grid">
+        <a class="project-card" data-category="government" href="https://pdam.kupangkota.go.id/" target="_blank" rel="noopener noreferrer">
+          <img class="project-image" src="perumda.png" alt="PDAM Kota Kupang information system preview" loading="lazy">
+          <div class="project-info"><span class="project-category">Government</span><h3 class="project-title">PDAM Kota Kupang</h3><p class="project-description">Water utility information system.</p></div>
+        </a>
+        <a class="project-card" data-category="community" href="https://www.gmitkarmel.com/" target="_blank" rel="noopener noreferrer">
+          <img class="project-image" src="karmel.png" alt="GMIT Karmel website preview" loading="lazy">
+          <div class="project-info"><span class="project-category">Community</span><h3 class="project-title">GMIT Karmel</h3><p class="project-description">Church information and services website.</p></div>
+        </a>
+        <a class="project-card" data-category="government" href="https://siatlas.kupangkota.go.id/" target="_blank" rel="noopener noreferrer">
+          <img class="project-image" src="siatlas.png" alt="SiAtlas Diskominfo preview" loading="lazy">
+          <div class="project-info"><span class="project-category">Government</span><h3 class="project-title">SiAtlas Diskominfo</h3><p class="project-description">Integrated asset information system.</p></div>
+        </a>
+        <a class="project-card" data-category="government" href="https://sivaksin.kupangkota.go.id/" target="_blank" rel="noopener noreferrer">
+          <img class="project-image" src="sivaksin.png" alt="Si VAKSIN application preview" loading="lazy">
+          <div class="project-info"><span class="project-category">Government</span><h3 class="project-title">Si VAKSIN</h3><p class="project-description">Social welfare verification system.</p></div>
+        </a>
+        <a class="project-card" data-category="community" href="https://desafatukona.id/" target="_blank" rel="noopener noreferrer">
+          <img class="project-image" src="fatukona.png" alt="Fatukona village website preview" loading="lazy">
+          <div class="project-info"><span class="project-category">Community</span><h3 class="project-title">Desa Fatukona</h3><p class="project-description">Village information and services website.</p></div>
+        </a>
+        <a class="project-card" data-category="government" href="https://bkad.kupangkota.go.id/" target="_blank" rel="noopener noreferrer">
+          <img class="project-image" src="bkad.png" alt="BKAD Kota Kupang website preview" loading="lazy">
+          <div class="project-info"><span class="project-category">Government</span><h3 class="project-title">BKAD Kota Kupang</h3><p class="project-description">Financial and asset management system.</p></div>
+        </a>
+        <a class="project-card" data-category="government" href="https://satudata.kupangkota.go.id/" target="_blank" rel="noopener noreferrer">
+          <img class="project-image" src="Mockup Portal Data Kota Kupang.png" alt="Satu Data Kota Kupang portal preview" loading="lazy">
+          <div class="project-info"><span class="project-category">Government</span><h3 class="project-title">Satu Data Kota Kupang</h3><p class="project-description">Integrated city data portal.</p></div>
+        </a>
+        <a class="project-card" data-category="education" href="https://lab-kimia-fkip-undana.rf.gd/lab/" target="_blank" rel="noopener noreferrer">
+          <img class="project-image" src="Ruang Kerja dengan Situs Laboratorium Pendidikan.png" alt="Chemistry laboratory website preview" loading="lazy">
+          <div class="project-info"><span class="project-category">Education</span><h3 class="project-title">Lab Kimia FKIP Undana</h3><p class="project-description">Chemistry education laboratory website.</p></div>
+        </a>
+        <a class="project-card" data-category="community" href="https://desa-haulasi.free.je/" target="_blank" rel="noopener noreferrer">
+          <img class="project-image" src="Mockup Laptop Portal Desa Modern.png" alt="Haulasi village website preview" loading="lazy">
+          <div class="project-info"><span class="project-category">Community</span><h3 class="project-title">Desa Haulasi</h3><p class="project-description">Village information and services website.</p></div>
+        </a>
       </div>
     </div>
-    
-    <div class="card" data-link="https://siatlas.kupangkota.go.id/">
-      <img src="siatlas.png">
-      <div class="card-body">
-        <h3>SiAtlas DISKOMINFO</h3>
-        <p>Integrated Asset Information System</p>
-      </div>
+  </section>
+
+  <section class="about-section" id="tentang">
+    <div class="container about-inner">
+      <div><p class="section-kicker">About me</p><h2 class="section-title">Technology built around real needs.</h2></div>
+      <p class="about-copy">I'm Robert Nahas, a web and systems developer. I build websites and information systems for public services, education, and communities, with a focus on clear interfaces and intuitive experiences.</p>
     </div>
+  </section>
+</main>
 
-   
-
-    <div class="card" data-link="https://sivaksin.kupangkota.go.id/">
-      <img src="sivaksin.png">
-      <div class="card-body">
-        <h3>Si VAKSIN</h3>
-        <p>Social Welfare Verification System</p>
-      </div>
-    </div>
-
-    <div class="card" data-link="https://desafatukona.id/">
-      <img src="fatukona.png">
-      <div class="card-body">
-        <h3>Desa Fatukona</h3>
-        <p>Village Information System</p>
-      </div>
-    </div>
-
-    <div class="card" data-link="https://bkad.kupangkota.go.id/">
-      <img src="bkad.png">
-      <div class="card-body">
-        <h3>BKAD Kota Kupang</h3>
-        <p>Financial & Asset Management</p>
-      </div>
-    </div>
-
- 
-
-  </div>
-</section>
-
-<footer>
-© 2026 • <strong>Robert Nahas</strong>
+<footer class="container site-footer">
+  <span>© 2026 <strong>Robert Nahas</strong></span>
+  <span>Designed and built with care.</span>
 </footer>
-
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-/* INTRO */
-gsap.from(".intro-text",{opacity:0,y:40,duration:1.5});
-gsap.to("#intro",{delay:2.5,opacity:0,onComplete:()=>{
-  intro.remove();
-  gsap.to("#main",{opacity:1,visibility:"visible",duration:1});
-}});
+const filterButtons = document.querySelectorAll(".filter-button");
+const projectCards = document.querySelectorAll(".project-card");
+const projectCount = document.getElementById("project-count");
 
-/* STARFIELD */
-const c=document.getElementById("space"),ctx=c.getContext("2d");
-let w,h,stars=[];
-function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
-resize();addEventListener("resize",resize);
+filterButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    const filter = button.dataset.filter;
+    let visibleCount = 0;
 
-for(let i=0;i<400;i++)
-  stars.push({x:(Math.random()-.5)*w,y:(Math.random()-.5)*h,z:Math.random()*w});
-
-(function anim(){
-  ctx.fillStyle="black";
-  ctx.fillRect(0,0,w,h);
-  ctx.fillStyle="white";
-  stars.forEach(s=>{
-    s.z-=3;if(s.z<1)s.z=w;
-    const k=120/s.z;
-    const x=s.x*k+w/2,y=s.y*k+h/2;
-    if(x>0&&x<w&&y>0&&y<h)ctx.fillRect(x,y,2,2);
-  });
-  requestAnimationFrame(anim);
-})();
-
-/* DESKTOP HORIZONTAL SCROLL */
-if(innerWidth >= 768){
-  const track=document.getElementById("tunnel");
-  const cards=[...document.querySelectorAll(".card")];
-  let pos=0,vel=0;
-  const friction=.92;
-
-  function loop(){
-    pos+=vel;
-    vel*=friction;
-
-    const max=track.scrollWidth-innerWidth;
-    pos=Math.max(0,Math.min(pos,max));
-
-    gsap.set(track,{x:-pos});
-
-    cards.forEach(card=>{
-      const r=card.getBoundingClientRect();
-      const d=Math.abs(r.left+r.width/2-innerWidth/2);
-      const p=Math.max(0,1-d/600);
-      gsap.set(card,{scale:.7+p*.4,opacity:.35+p*.65});
+    filterButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+    projectCards.forEach(card => {
+      const visible = filter === "all" || card.dataset.category === filter;
+      card.hidden = !visible;
+      if (visible) visibleCount++;
     });
 
-    requestAnimationFrame(loop);
-  }
-  loop();
+    projectCount.textContent = `${visibleCount} ${visibleCount === 1 ? "project" : "projects"}`;
+  });
+});
 
-  addEventListener("wheel",e=>vel+=e.deltaY*.003,{passive:true});
+const canvas = document.getElementById("space");
+const context = canvas.getContext("2d");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let canvasWidth = 0;
+let canvasHeight = 0;
+let stars = [];
+
+function drawStarfield() {
+  context.clearRect(0, 0, canvasWidth, canvasHeight);
+  stars.forEach(star => {
+    star.z -= 2.4;
+    if (star.z < 1) {
+      star.x = (Math.random() - 0.5) * canvasWidth;
+      star.y = (Math.random() - 0.5) * canvasHeight;
+      star.z = canvasWidth;
+    }
+
+    const perspective = 125 / star.z;
+    const x = star.x * perspective + canvasWidth / 2;
+    const y = star.y * perspective + canvasHeight / 2;
+    const size = Math.max(0.6, (1 - star.z / canvasWidth) * 2.2);
+    if (x >= 0 && x < canvasWidth && y >= 0 && y < canvasHeight) {
+      context.globalAlpha = 0.18 + (1 - star.z / canvasWidth) * 0.72;
+      context.fillStyle = "#ffffff";
+      context.fillRect(x, y, size, size);
+    }
+  });
+  context.globalAlpha = 1;
+  if (!prefersReducedMotion) requestAnimationFrame(drawStarfield);
 }
 
-/* CARD CLICK */
-document.querySelectorAll(".card").forEach(card=>{
-  card.onclick=()=>window.open(card.dataset.link,"_blank");
+function resizeStarfield() {
+  const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+  canvasWidth = window.innerWidth;
+  canvasHeight = window.innerHeight;
+  canvas.width = canvasWidth * pixelRatio;
+  canvas.height = canvasHeight * pixelRatio;
+  context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  const starCount = Math.min(320, Math.max(180, Math.floor(canvasWidth * canvasHeight / 4500)));
+  stars = Array.from({ length: starCount }, () => ({
+    x: (Math.random() - 0.5) * canvasWidth,
+    y: (Math.random() - 0.5) * canvasHeight,
+    z: Math.random() * canvasWidth
+  }));
+  if (prefersReducedMotion) drawStarfield();
+}
+
+resizeStarfield();
+if (!prefersReducedMotion) drawStarfield();
+window.addEventListener("resize", resizeStarfield, { passive: true });
+
+window.addEventListener("load", () => {
+  const intro = document.getElementById("intro");
+  if (!window.gsap || !window.ScrollTrigger || prefersReducedMotion) {
+    intro.remove();
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const entrance = gsap.timeline({ paused: true, defaults: { ease: "power3.out" } });
+  entrance
+    .from(".brand", { y: -16, autoAlpha: 0, duration: 0.55 })
+    .from(".nav-links", { y: -12, autoAlpha: 0, duration: 0.45 }, "-=0.3")
+    .from(".hero-content > *", { y: 24, autoAlpha: 0, duration: 0.65, stagger: 0.1 }, "-=0.2")
+    .from(".hero-scroll", { y: -10, autoAlpha: 0, duration: 0.6 }, "-=0.35");
+
+  ScrollTrigger.batch(".project-card", {
+    start: "top 88%",
+    interval: 0.12,
+    batchMax: 3,
+    onEnter: cards => gsap.fromTo(cards,
+      { y: 26, autoAlpha: 0 },
+      { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.1, ease: "power2.out", overwrite: true }
+    )
+  });
+
+  gsap.from(".section-top, .filter-list", {
+    y: 18,
+    autoAlpha: 0,
+    duration: 0.55,
+    stagger: 0.12,
+    ease: "power2.out",
+    scrollTrigger: { trigger: ".work-section", start: "top 82%", once: true }
+  });
+
+  gsap.from(".about-inner > *", {
+    y: 22,
+    autoAlpha: 0,
+    duration: 0.65,
+    stagger: 0.12,
+    ease: "power2.out",
+    scrollTrigger: { trigger: ".about-section", start: "top 84%", once: true }
+  });
+
+  gsap.to("#scroll-progress", {
+    scaleX: 1,
+    ease: "none",
+    scrollTrigger: { trigger: document.documentElement, start: "top top", end: "bottom bottom", scrub: 0.2 }
+  });
+
+  gsap.set("#main", { autoAlpha: 0 });
+  gsap.timeline({
+    onComplete: () => {
+      intro.remove();
+      entrance.play(0);
+      ScrollTrigger.refresh();
+    }
+  })
+    .from(".intro-content", { y: 22, autoAlpha: 0, duration: 0.9, ease: "power3.out" })
+    .fromTo(".intro-line", { scaleX: 0 }, { scaleX: 1, duration: 0.85, ease: "power2.inOut" }, "-=0.3")
+    .to(".intro-content", { y: -12, autoAlpha: 0, duration: 0.45, delay: 1.15, ease: "power2.in" })
+    .to("#intro", { autoAlpha: 0, duration: 0.55, ease: "power2.out" })
+    .to("#main", { autoAlpha: 1, duration: 0.65, ease: "power2.out" }, "-=0.2");
 });
 </script>
 
